@@ -1,0 +1,89 @@
+<html><head><base href="/" /><style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(45deg, #1a1a1a, #2a2a2a);
+  font-family: Arial, sans-serif;
+  color: white;
+}
+
+.container {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0,0,0,0.3);
+  border-radius: 1rem;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+svg {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 2rem;
+}
+
+.test-text {
+  font-size: 2.5rem;
+  font-weight: bold;
+  background: linear-gradient(90deg, #ff6b6b, #4ecdc4);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  color: #ccc;
+}
+</style></head><body>
+<div class="container">
+  <svg class="pulse" viewBox="0 0 100 100">
+    <circle cx="50" cy="50" r="45" fill="none" stroke="#4ecdc4" stroke-width="2">
+      <animate attributeName="r" from="45" to="25" dur="1.5s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" from="1" to="0" dur="1.5s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+    <circle cx="50" cy="50" r="25" fill="none" stroke="#ff6b6b" stroke-width="2">
+      <animate attributeName="r" from="25" to="45" dur="1.5s" begin="0s" repeatCount="indefinite"/>
+      <animate attributeName="opacity" from="0" to="1" dur="1.5s" begin="0s" repeatCount="indefinite"/>
+    </circle>
+    <path d="M35 50 L45 60 L65 40" stroke="white" stroke-width="3" fill="none">
+      <animate attributeName="stroke-dasharray" from="0,100" to="100,0" dur="1s" begin="0s" fill="freeze"/>
+    </path>
+  </svg>
+  <div class="test-text">Test Complete</div>
+  <div class="subtitle">System functioning normally</div>
+</div>
+
+<script>
+// Add interactive elements
+document.querySelector('.container').addEventListener('mouseover', function() {
+  this.style.transform = 'scale(1.02)';
+  this.style.transition = 'transform 0.3s ease';
+});
+
+document.querySelector('.container').addEventListener('mouseout', function() {
+  this.style.transform = 'scale(1)';
+  this.style.transition = 'transform 0.3s ease';
+});
+
+// Random color animation
+setInterval(() => {
+  const colors = ['#ff6b6b', '#4ecdc4', '#95e1d3', '#f7d794'];
+  const randomColor = colors[Math.floor(Math.random() * colors.length)];
+  document.querySelector('circle').setAttribute('stroke', randomColor);
+}, 3000);
+</script>
+<script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"4c6229722a6346bc8eb5cb0e5eae5d41","server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}' crossorigin="anonymous"></script>
+</body></html>
